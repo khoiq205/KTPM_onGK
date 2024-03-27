@@ -14,10 +14,10 @@ import java.net.URI;
 
 @RestController
 public class LoginController {
-    @GetMapping("/check-user")
+    @GetMapping("/login/check-user")
     public User checkUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         RestTemplate restTemplate = new RestTemplate();
-        String apiUrl = "http://localhost:8081/checkUser?username=" + username + "&password=" + password;
+        String apiUrl = "http://localhost:8081/register/checkUser?username=" + username + "&password=" + password;
         ResponseEntity<User> responseEntity = restTemplate.exchange(
                 apiUrl,
                 HttpMethod.GET,
@@ -28,10 +28,10 @@ public class LoginController {
         return responseEntity.getBody();
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
         RestTemplate restTemplate = new RestTemplate();
-        String apiUrl = "http://localhost:8081/checkUser?username=" + username + "&password=" + password;
+        String apiUrl = "http://localhost:8081/register/checkUser?username=" + username + "&password=" + password;
         ResponseEntity<User> responseEntity = restTemplate.exchange(
                 apiUrl,
                 HttpMethod.GET,

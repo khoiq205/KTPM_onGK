@@ -14,13 +14,13 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/save")
+    @PostMapping("/register/save")
     public User saveUser(@RequestBody User user) {
         userRepository.save(user);
         return user;
     }
 
-    @GetMapping("/getId")
+    @GetMapping("/register/getId")
     public ResponseEntity<User> getUserById(@RequestParam("id") Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isEmpty())
@@ -29,7 +29,7 @@ public class UserController {
             return ResponseEntity.ok(userOptional.get());
     }
 
-    @GetMapping("/checkUser")
+    @GetMapping("/register/checkUser")
     public User checkUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         User user = userRepository.findByUserNameAndPassword(username, password);
         return user;
